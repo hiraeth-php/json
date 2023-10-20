@@ -2,8 +2,8 @@
 
 namespace Json\Normalizer\Hiraeth\Doctrine;
 
-use Doctrine\Common\Proxy\Proxy;
 use Json;
+use Doctrine\Common\Proxy\Proxy;
 use Hiraeth\Doctrine\ManagerRegistry;
 
 /**
