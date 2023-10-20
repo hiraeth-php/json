@@ -1,0 +1,37 @@
+{
+    "name": "hiraeth/json",
+    "description": "JSON normalizer support for the Hiraeth Nano-Framework",
+    "keywords": [],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matthew J. Sahagian",
+            "email": "matthew.sahagian@gmail.com",
+            "role": "Lead Architect / Developer"
+        }
+    ],
+    "require-dev": {
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^8.5"
+    },
+    "require": {
+        "php": ">=7.2",
+        "dotink/json": "^1.0"
+    },
+    "autoload": {
+        "classmap": ["src/"]
+    },
+    "type": "opus-package",
+    "extra": {
+        "opus": {
+            "hiraeth/app": {
+                "config": ""
+            }
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "imarc/opus": true
+        }
+    }
+}
