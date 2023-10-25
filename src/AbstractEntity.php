@@ -3,9 +3,8 @@
 namespace Json\Normalizer\Hiraeth\Doctrine;
 
 use Json\Normalizer;
-use Hiraeth\Doctrine;
 use Doctrine\Common\Proxy\Proxy;
-use Doctrine\Common\Collections\Collection;
+use Hiraeth\Doctrine\ManagerRegistry;
 /**
  *
  */
@@ -19,7 +18,7 @@ class AbstractEntity extends Normalizer
 	/**
 	 *
 	 */
-	public function __construct(Doctrine\ManagerRegistry $managers)
+	public function __construct(ManagerRegistry $managers)
 	{
 		$this->managers = $managers;
 	}
