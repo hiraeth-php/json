@@ -14,6 +14,6 @@ class Collection extends Normalizer
 	 */
 	public function jsonSerialize(): Normalizer
 	{
-		return Normalizer::prepare($this->getValues());
+		return Normalizer::prepare($this('data')->getValues());
 	}
 }
