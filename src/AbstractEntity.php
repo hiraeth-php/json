@@ -2,14 +2,14 @@
 
 namespace Json\Normalizer\Hiraeth\Doctrine;
 
-use Json;
+use Json\Normalizer;
 use Doctrine\Common\Proxy\Proxy;
 use Hiraeth\Doctrine\ManagerRegistry;
 
 /**
  *
  */
-class AbstractEntity extends Json\Normalizer
+class AbstractEntity extends Normalizer
 {
 	/**
 	 * @var ManagerRegistry
@@ -27,7 +27,7 @@ class AbstractEntity extends Json\Normalizer
 	/**
 	 *
 	 */
-	public function jsonSerialize(): Json\Normalizer
+	public function jsonSerialize(): Normalizer
 	{
 		$data       = array();
 		$class      = get_class($this('data'));
@@ -59,6 +59,6 @@ class AbstractEntity extends Json\Normalizer
 			}
 		}
 
-		return static::prepare($data, $this('nested'));
+		return Normalizer::prepare($data, $this('nested'));
 	}
 }

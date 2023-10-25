@@ -2,12 +2,12 @@
 
 namespace Json\Normalizer\Doctrine\Common\Collections;
 
-use Json;
+use Json\Normalizer;
 
 /**
  *
  */
-class Collection extends Json\Normalizer
+class Collection extends Normalizer
 {
 	/**
 	 *
