@@ -3,9 +3,9 @@
 namespace Json\Normalizer\Hiraeth\Doctrine;
 
 use Json\Normalizer;
+use Hiraeth\Doctrine;
 use Doctrine\Common\Proxy\Proxy;
-use Hiraeth\Doctrine\ManagerRegistry;
-
+use Doctrine\Common\Collections\Collection;
 /**
  *
  */
@@ -19,7 +19,7 @@ class AbstractEntity extends Normalizer
 	/**
 	 *
 	 */
-	public function __construct(ManagerRegistry $managers)
+	public function __construct(Doctrine\ManagerRegistry $managers)
 	{
 		$this->managers = $managers;
 	}
@@ -33,30 +33,21 @@ class AbstractEntity extends Normalizer
 		$class      = get_class($this('data'));
 		$manager    = $this->managers->getManagerForClass($class);
 		$meta_data  = $manager->getClassMetadata($class);
-		$identity   = $meta_data->getIdentifierFieldNames();
 
-		foreach ($meta_data->getFieldNames() as $field) {
-			if ($this('nested')) {
-				if (!in_array($field, $identity)) {
-					continue;
-				}
-			}
-
-			$data[$field] = $meta_data->getFieldValue($this('data'), $field);
+		if ($this('data') instanceof Proxy) {
+			$data('data')->__load();
 		}
 
 		if ($this('nested')) {
-			$fields = $identity;
+			$fields = $meta_data->getIdentifierFieldNames();
 		} else {
-			$fields = array_merge($meta_data->getFieldNames(), $meta_data->getAssociationNames());
+			$fields = array_unique(
+				array_merge($meta_data->getFieldNames(), $meta_data->getAssociationNames())
+			);
 		}
 
 		foreach ($fields as $field) {
-			$data[$field] = $meta_data->getFieldValue($this('data'), $field);
-
-			if ($data[$field] instanceof Proxy) {
-				$data[$field]->__load();
-			}
+			$data[$field] = $this->$field;
 		}
 
 		return Normalizer::prepare($data, $this('nested'));
