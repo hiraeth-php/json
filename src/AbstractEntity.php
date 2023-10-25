@@ -35,7 +35,7 @@ class AbstractEntity extends Normalizer
 		$meta_data  = $manager->getClassMetadata($class);
 
 		if ($this('data') instanceof Proxy) {
-			$data('data')->__load();
+			$this('data')->__load();
 		}
 
 		if ($this('nested')) {
