@@ -46,6 +46,11 @@ class AbstractEntity extends Normalizer
 		}
 
 		foreach ($fields as $field) {
+			if (strpos($field, '.') !== false) {
+				$parts = explode('.', $field);
+				$field = $parts[0];
+			}
+
 			$data[$field] = $this->$field;
 		}
 
