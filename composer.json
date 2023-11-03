@@ -1,6 +1,8 @@
 {
     "name": "hiraeth/json",
     "description": "JSON normalizer support for the Hiraeth Nano-Framework",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "keywords": [],
     "license": "MIT",
     "authors": [
@@ -10,16 +12,21 @@
             "role": "Lead Architect / Developer"
         }
     ],
-    "require-dev": {
-        "phpstan/phpstan": "^1.10",
-        "phpunit/phpunit": "^8.5"
-    },
     "require": {
-        "php": ">=7.2",
-        "dotink/json": "^1.0"
+        "dotink/json": "^1.0",
+        "hiraeth/app": "^3.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.0",
+        "phpunit/phpunit": "^10.0",
+        "hiraeth/doctrine": "^3.0",
+        "hiraeth/cache": "^3.0"
     },
     "autoload": {
-        "classmap": ["src/"]
+        "classmap": ["src"]
+    },
+    "autoload-dev": {
+        "classmap": ["test/src"]
     },
     "type": "opus-package",
     "extra": {

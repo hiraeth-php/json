@@ -30,8 +30,8 @@ class AbstractEntity extends Normalizer
 	{
 		$data       = array();
 		$class      = get_class($this('data'));
-		$manager    = $this->managers->getManagerForClass($class);
-		$meta_data  = $manager->getClassMetadata($class);
+		$manager    = $this->managers->getManagerForClass($class ?: NULL);
+		$meta_data  = $manager->getClassMetadata($class ?: NULL);
 
 		if ($this('data') instanceof Proxy) {
 			$this('data')->__load();
