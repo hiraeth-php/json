@@ -33,9 +33,7 @@ class AbstractEntity extends Normalizer
 		$manager    = $this->managers->getManagerForClass($class ?: NULL);
 		$meta_data  = $manager->getClassMetadata($class ?: NULL);
 
-		if ($this('data') instanceof Proxy) {
-			$this('data')->__load();
-		}
+		$manager->getUnitOfWork()->initializeObject($this('data'));
 
 		if ($this('nested')) {
 			$fields = $meta_data->getIdentifierFieldNames();
