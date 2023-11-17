@@ -36,11 +36,21 @@ class AbstractEntity extends Normalizer
 		$manager->getUnitOfWork()->initializeObject($this('data'));
 
 		if ($this('nested')) {
-			$fields = $meta_data->getIdentifierFieldNames();
+			$fields = array_unique(
+				array_merge(
+					$meta_data->getIdentifierFieldNames(),
+					$this('data')::$expandable
+				)
+			);
+
 		} else {
 			$fields = array_unique(
-				array_merge($meta_data->getFieldNames(), $meta_data->getAssociationNames())
+				array_merge(
+					$meta_data->getFieldNames(),
+					$meta_data->getAssociationNames()
+				)
 			);
+
 		}
 
 		foreach ($fields as $field) {
